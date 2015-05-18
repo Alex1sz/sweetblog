@@ -1,15 +1,15 @@
 $.ajaxSetup({
-  xhrFields: {withCredentials: true};
+  xhrFields: {withCredentials: true},
   error: function(xhr, status, error) {
     $('.alert').removeClass('hidden');
-    $('.alert').html('Status: ' + status + ', error: ' + error);
+    $('.alert').html("Status: " + status + ", error: " + error);
   }
 });
 
 var findTr = function(event) {
   var target = event.srcElement || event.target;
   var $target = $(target);
-  var $tr = $target.parents('tr');
+  var $tr =  $target.parents('tr');
   return $tr;
 };
 
@@ -36,7 +36,7 @@ var update = function(event) {
   };
   var id = $tr.attr('data-id');
   $.ajax({
-    url: '/api/articles' + id,
+    url: '/api/articles/' + id,
     type: 'PUT',
     contentType: 'application/json',
     data: JSON.stringify({article: data}),
@@ -44,7 +44,7 @@ var update = function(event) {
       $tr.find('button').removeAttr('disabled');
       $('.alert').addClass('hidden');
       if (data.published) {
-        $tr.remove.Class('unpublished').find('.glyphicon-play').removeClass('glyphicon-play').addClass('glyphhicon-pause');
+        $tr.removeClass('unpublished').find('.glyphicon-play').removeClass('glyphicon-play').addClass('glyphicon-pause');
       } else {
         $tr.addClass('unpublished').find('.glyphicon-pause').removeClass('glyphicon-pause').addClass('glyphicon-play');
       }
