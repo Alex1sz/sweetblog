@@ -85,7 +85,7 @@ exports.postArticle = function(req, res, next) {
   };
   req.collections.articles.insert(article, function(error, articleResponse) {
     if (error) return next(error);
-    res.render('post', {error: 'Article was added. Publish it on Admin page.'});
+    res.render('post', {error: 'Article was added. Published on Admin page.'});
   });
 };
 
