@@ -52,7 +52,7 @@ exports.edit = function(req, res, next) {
 /*
  * DELETE article API.
  */
- exports.del = function(req, res, next) {
+ exports.delete = function(req, res, next) {
   if (!req.params.id) return next(new Error('No article ID.'));
   req.collections.articles.removeById(req.params.id, function(error, count) {
     if (error) return next(error);
@@ -98,5 +98,5 @@ exports.admin = function(req, res, next) {
     if (error) return next(error);
     res.render('admin', {articles:articles});
   });
-  
+
 }

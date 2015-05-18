@@ -13,13 +13,12 @@ var findTr = function(event) {
   return $tr;
 };
 
-
 // for removing articles
 var remove = function(event) {
   var $tr = findTr(event);
   var id = $tr.data('id');
   $.ajax({
-    url: '/api/articles' + id,
+    url: '/api/articles/' + id,
     type: 'DELETE',
     success: function(data, status, xhr) {
       $('.alert').addClass('hidden');
@@ -28,7 +27,7 @@ var remove = function(event) {
   })
 };
 
-// publishing and unpublishing are coupled. Both use PUT
+// publishing and unpublishing articles are coupled below. Both use PUT
 var update = function(event) {
   var $tr = findTr(event);
   $tr.find('button').attr('disabled', 'disabled');

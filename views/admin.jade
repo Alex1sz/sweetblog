@@ -1,8 +1,6 @@
 extends layout
-
 block page
   - var menu = 'admin'
-
 block content
   div.admin
     if (articles.length === 0 )
@@ -23,5 +21,8 @@ block content
               td.action
                 button.btn.btn-danger.btn-sm.remove(type="button")
                   span.glyphicon.glyphicon-remove(title="Remove")
+              td.action
+                button.btn.btn-default.btn-sm.publish(type="button")
+                  span.glyphicon(class=(article.published)?"glyphicon-pause":"glyphicon-play", title=(article.published)?"Unpublish":"Publish")
               td= article.title
-    script(type="text/javascript", src="/admin.js")
+    script(type="text/javascript", src="js/admin.js")
