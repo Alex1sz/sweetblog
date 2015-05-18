@@ -1,0 +1,16 @@
+[{
+  "title": "Reasons I love ice-cream",
+  "slug": "icecream-movement",
+  "published": true,
+  "text": "blah blah blah blah blah blah blah."
+}, {
+  "title": "Reasons to eat cake",
+  "slug": "cake-reasons",
+  "text": "work in progress",
+  "published": false
+}, {
+  "title": "Dessert fundamenals: A concise Overview of my Favorite desserts",
+  "slug": "dessert-fundamentals",
+  "published": true,
+  "text": "Ice-cream is a highly delicious and scalable dessert"
+}]
