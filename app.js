@@ -2,14 +2,10 @@ var express = require('express'),
   routes = require('./routes'),
   http = require('http'),
   path = require('path'),
-  mongoskin = require('mongoskin'),
-  dbUrl = process.env.MONGOHQ_URL || 
-    'mongodb://@localhost:27017/blog',
-  db = mongoskin.db(dbUrl, {safe: true}),
-  collections = {
-    articles: db.collection('articles'),
-    users: db.collection('users')
-  };
+  mongoose = require('mongoose'),
+  models = require('./models')
+  dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/blog',
+  db = mongoose.connect(dbUrl, {safe: true});
 
 // Dotenv for secret env variables
 var dotenv = require('dotenv').load();
@@ -28,8 +24,8 @@ app.locals.appTitle = 'sweet-blog';
 
 // Expose collections to request handlers
 app.use(function(req, res, next) {
-  if (!collections.articles || ! collections.users) return next(new Error("No collections."))
-  req.collections = collections;
+  if (!models.Article || ! models.User) return next(new Error("No models."))
+  req.models = models;
   return next();
 });
 
