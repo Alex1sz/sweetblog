@@ -25,17 +25,8 @@ if (process.env.REDISTOGO_URL) {
 var logger = require('morgan'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
-  methodOverride = require('method-override');
-
-var errorhandler = require('errorhandler');
-if (process.env.NODE_ENV === 'development') {
-  app.use(errorhandler({
-    dumpExceptions: true,
-    showStack: true
-  }));
-} else if (process.env.NODE_ENV === 'production') {
-  app.use(errorhandler());
-}
+  methodOverride = require('method-override'),
+  errorHandler = require('errorhandler');
 
 var app = express();
 app.locals.appTitle = 'sweet-blog';
@@ -82,7 +73,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-// Authorizatioin
+// Authorization
 var authorize = function(req, res, next) {
   if (req.session && req.session.admin)
     return next();
@@ -90,6 +81,10 @@ var authorize = function(req, res, next) {
     return res.sendStatus(401);
 };
 
+// development only
+if ('development' === app.get('env')) {
+  app.use(errorHandler());
+}
 
 // Pages/routes
 app.get('/', routes.index);
