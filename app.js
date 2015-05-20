@@ -27,14 +27,14 @@ var logger = require('morgan'),
   bodyParser = require('body-parser'),
   methodOverride = require('method-override');
 
-var errorHandler = require('errorhandler');
+var errorhandler = require('errorhandler');
 if (process.env.NODE_ENV === 'development') {
-  app.use(errorHandler({
+  app.use(errorhandler({
     dumpExceptions: true,
     showStack: true
   }));
 } else if (process.env.NODE_ENV === 'production') {
-  app.use(express.errorHandler());
+  app.use(express.errorhandler());
 }
 
 var app = express();
