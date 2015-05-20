@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === 'development') {
     showStack: true
   }));
 } else if (process.env.NODE_ENV === 'production') {
-  app.use(errorHandler());
+  app.use(express.errorHandler());
 }
 
 var app = express();
