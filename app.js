@@ -4,7 +4,7 @@ var express = require('express'),
   path = require('path'),
   mongoose = require('mongoose'),
   models = require('./models')
-  dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/blog',
+  dbUrl = process.env.MONGOLAB_URI || 'mongodb://@localhost:27017/blog',
   db = mongoose.connect(dbUrl, {safe: true});
 
 // Dotenv for secret env variables
@@ -53,15 +53,15 @@ app.use(cookieParser(process.env.PARSER_SECRET));
 // in production
 app.use(session({ 
   store: new RedisStore({ 
-    host: redisUrl.hostname, port: redisUrl.port, db: redisAuth[0], pass: redisAuth[1] }),
+    host: redisUrl.hostname, port: redisUrl.port, pass: redisAuth[1] }),
   secret: process.env.SESSION_SECRET
 }));
 // in development     
 // app.use(session({ 
 //  store: new RedisStore({
 //    host: "127.0.0.1",
-//    port: "6379",
-//    db: 1 }),
+//    port: "6379"
+//  }),
 //  secret: process.env.SESSION_SECRET
 // }));
 app.use(methodOverride());
