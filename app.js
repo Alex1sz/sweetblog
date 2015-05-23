@@ -57,7 +57,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET
 }));
 // in development     
-// app.use(session({ 
+//app.use(session({ 
 //  store: new RedisStore({
 //    host: "127.0.0.1",
 //    port: "6379"
