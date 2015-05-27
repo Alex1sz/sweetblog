@@ -17,9 +17,8 @@ var redisUrl = require("url").parse(process.env.REDISTOGO_URL);
 var redisAuth = redisUrl.auth.split(':');
 
 if (process.env.REDISTOGO_URL) {
-  var rtg = require("url").parse(process.env.REDISTOGO_URL);
-  var redis = require("redis").createClient(rtg.port, rtg.hostname);
-  redis.auth(rtg.auth.split(":")[1]);
+  var redis = require("redis").createClient(redisUrl.port, redisUrl.hostname);
+  redis.auth(redisAuth[1]);
 } else {
   var redis = require("redis").createClient();
 }
