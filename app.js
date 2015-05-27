@@ -18,7 +18,7 @@ var redisAuth = redisUrl.auth.split(':');
 
 if (process.env.REDISTOGO_URL) {
   var redis = require("redis").createClient(redisUrl.port, redisUrl.hostname);
-  redis.auth(redisAuth[1]);
+  redis.auth(redisUrl.auth.split(":")[1]);
 } else {
   var redis = require("redis").createClient();
 }
